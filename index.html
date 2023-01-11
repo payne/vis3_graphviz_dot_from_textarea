@@ -8,14 +8,19 @@
 <body>
   <div id="mynetwork"></div>
   <textarea id="dot_ta" rows=10 cols=70>
-    dinetwork {123 -> 123 -> 2; 2 -> 3; 2 -- 4; 2 -> 123 }
+dinetwork {
+   123 -> 123 -> 2; 
+   2 -> 3; 
+   2 -- 4; 
+   2 -> 123;
+}
   </textarea>
   <button id="submitId">Render</button>
   <script src="script.js"></script>
 
   <h5>References:</h5>
   <h6>
-    <a href=https://visjs.github.io/vis-network/docs/network/index.html#importDot>
+    <a href="https://visjs.github.io/vis-network/docs/network/index.html#importDot" target="_blank">
       Simplest example (using standalone build) from
 https://visjs.github.io/vis-network/docs/network/index.html#importDot
     </a>

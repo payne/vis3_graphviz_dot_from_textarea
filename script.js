@@ -27,7 +27,6 @@ function setup() {
 function renderNewDot(event) {
   console.log(event);
   const ta = document.getElementById('dot_ta');
-  window.ta = ta; // kinda like a REPL - lets me look at ta in devtools console
   let dot = ta.value;
   console.log(dot);
   dot = dot.replaceAll('&gt;', '>');
