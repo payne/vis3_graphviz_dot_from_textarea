@@ -1,30 +1,41 @@
-// create an array with nodes
-var nodes = new vis.DataSet([
-  { id: 1, label: 'Node 1' },
-  { id: 2, label: 'Node 2' },
-  { id: 3, label: 'Node 3' },
-  { id: 4, label: 'Node 4' },
-  { id: 5, label: 'Node 5' }
-]);
+function renderDot(aDOTstring) {
+  console.log(aDOTstring);
+  var parsedData = vis.parseDOTNetwork(aDOTstring);
 
-// create an array with edges
-var edges = new vis.DataSet([
-  { from: 1, to: 3 },
-  { from: 1, to: 2 },
-  { from: 2, to: 4 },
-  { from: 2, to: 5 }
-]);
+  var data = {
+    nodes: parsedData.nodes,
+    edges: parsedData.edges
+  }
 
-// create a network
-var container = document.getElementById('mynetwork');
+  var options = parsedData.options;
 
-// provide the data in the vis format
-var data = {
-  nodes: nodes,
-  edges: edges
-};
-var options = {};
+  // you can extend the options like a normal JSON variable:
+  options.nodes = {
+    color: 'red'
+  }
 
-// initialize your network!
-var network = new vis.Network(container, data, options);
+  var container = document.getElementById('mynetwork');
+  // create a network
+  var network = new vis.Network(container, data, options);
+}
 
+function setup() {
+  var submitButton = document.getElementById('submitId');
+  submitButton.addEventListener('click', renderNewDot);
+}
+
+function renderNewDot(event) {
+  console.log(event);
+  const ta = document.getElementById('dot_ta');
+  window.ta = ta; // kinda like a REPL - lets me look at ta in devtools console
+  let dot = ta.value;
+  console.log(dot);
+  dot = dot.replaceAll('&gt;', '>');
+  renderDot(dot);
+}
+
+// provide data in the DOT language
+var DOTstring = 'dinetwork {1 -> 1 -> 2; 2 -> 3; 2 -- 4; 2 -> 1 }';
+
+setup();
+renderDot(DOTstring);
