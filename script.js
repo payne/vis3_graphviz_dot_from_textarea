@@ -17,6 +17,10 @@ function renderDot(aDOTstring) {
   var container = document.getElementById('mynetwork');
   // create a network
   var network = new vis.Network(container, data, options);
+  network.on("afterDrawing", function (ctx) {
+    var dataURL = ctx.canvas.toDataURL();
+    document.getElementById('canvasImg').src = dataURL;
+  });
 }
 
 function setup() {
